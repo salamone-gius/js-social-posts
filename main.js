@@ -65,6 +65,18 @@ const postsContainer = document.querySelector(".posts-list");
 
 // - scorrendo tutto l'array posts con ciclo definito...
 for (let i = 0; i < posts.length; i++) {
+    // BONUS.2 salvo nella variabile nameSurname il nome e il cognome di ogni autore come 2 elementi di un array;
+    let nameSurname = posts[i].author.name.split(" ");
+    console.log("nameSurname =", nameSurname);
+    // - salvo nella variabile lettersOfName le lettere del nome di ogni autore come elementi di un array;
+    let lettersOfName = nameSurname[0].split("");
+    console.log("lettersOfName =", lettersOfName);
+    // - salvo nella variabile lettersOfSurname le lettere del cognome di ogni autore come elementi di un array;
+    let lettersOfSurname = nameSurname[1].split("");
+    console.log("lettersOfSurname =", lettersOfSurname);
+    // - salvo nella variabile initials la prima lettera del nome concatenata alla prima lettera del cognome di ogni autore;
+    let initials = `${lettersOfName[0]} ${lettersOfSurname[0]}`;
+    console.log("initials =", initials);
     // BONUS.1 Salvo il valore created dell'elemento/oggetto dell'array posts nella variabile "date";
     let usDate = posts[i].created; 
     // porcheria delle porcherie per invertire la data;
@@ -78,7 +90,7 @@ for (let i = 0; i < posts.length; i++) {
             <div class="post__header">
                 <div class="post-meta">                    
                     <div class="post-meta__icon">
-                        <img class="profile-pic" src="${posts[i].author.image}" alt="${posts[i].author.name}">                    
+                        <img class="profile-pic" src="${posts[i].author.image}" alt="${initials}">                    
                     </div>
                     <div class="post-meta__data">
                         <div class="post-meta__author">${posts[i].author.name}</div>
