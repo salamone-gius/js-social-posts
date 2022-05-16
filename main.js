@@ -105,8 +105,9 @@ for (let i = 0; i < posts.length; i++) {
 // Milestone 2 - Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone e incrementiamo il counter dei likes relativo:
 // - aggancio l'elemento HTML che scatenerà l'evento;
 let likeButton = document.querySelectorAll(".js-like-button");
-console.log(likeButton);
-// - Scorrendo PER tutti gli elementi presi con querySelectorAll (NodeList)...
+// - inizializzo un array vuoto;
+let liked = [];
+// - scorrendo PER tutti gli elementi presi con querySelectorAll (NodeList)...
 for (let i = 0; i < likeButton.length; i++) {
     // - ...aggiungo ad OGNI elemento un evento "click". Al click...
     likeButton[i].addEventListener("click", 
@@ -117,14 +118,18 @@ for (let i = 0; i < likeButton.length; i++) {
                 likeButton[i].classList.remove("like-button--liked");
             // - ...ALTRIMENTI...
             } else {
-                // - ...gliel'aggiungo;
+                // - ...gliel'aggiungo...
                 likeButton[i].classList.add("like-button--liked");
+                // - ...gli rimetto il cursor: pointer...
+                likeButton[i].style.cursor = "pointer";
+                // - ...salvo in un secondo array gli id dei post ai quali è stato messo il like;
+                liked.push(posts[i].id);
             }
         }
     );
 }
+console.log(liked);
 
-// Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
 // BONUS
 // 1. Formattare le date in formato italiano (gg/mm/aaaa)
 // 2. Gestire l'assenza dell'immagine profilo con un elemento di fallback che contiene le iniziali dell'utente (es. Luca Formicola > LF).
