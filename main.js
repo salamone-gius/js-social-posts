@@ -56,6 +56,7 @@ const posts = [
     }
 ];
 
+
 // Descrizione
 // Ricreiamo un feed social aggiungendo al layout di base fornito, il nostro script JS in cui:
 // Milestone 1 - Prendendo come riferimento il layout di esempio presente nell'html, stampiamo i post del nostro feed:
@@ -105,8 +106,13 @@ for (let i = 0; i < posts.length; i++) {
 // Milestone 2 - Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone e incrementiamo il counter dei likes relativo:
 // - aggancio l'elemento HTML che scatenerà l'evento;
 let likeButton = document.querySelectorAll(".js-like-button");
+
 // - inizializzo un array vuoto;
 let liked = [];
+
+// - aggancio l'elemento che voglio che cambi al click (contatore)...
+let counter = document.getElementById("like-counter-1");
+
 // - scorrendo PER tutti gli elementi presi con querySelectorAll (NodeList)...
 for (let i = 0; i < likeButton.length; i++) {
     // - ...aggiungo ad OGNI elemento un evento "click". Al click...
@@ -114,16 +120,21 @@ for (let i = 0; i < likeButton.length; i++) {
         function() {
             // - ...SE l'elemento ha la classe like-button--liked...
             if (likeButton[i].classList.contains("like-button--liked")) {
-                // - ...gliela tolgo...
+                // - ...gliela tolgo (BONUS.3)...
                 likeButton[i].classList.remove("like-button--liked");
+                // - ...tolgo 1 al valore della chiave "likes" e lo stampo (BONUS.3);
+                counter.innerHTML = posts[i].likes -= 1;
             // - ...ALTRIMENTI...
             } else {
                 // - ...gliel'aggiungo...
                 likeButton[i].classList.add("like-button--liked");
                 // - ...gli rimetto il cursor: pointer...
                 likeButton[i].style.cursor = "pointer";
-                // - ...salvo in un secondo array gli id dei post ai quali è stato messo il like;
+                // - ...salvo in un secondo array gli id dei post ai quali è stato messo il like...
                 liked.push(posts[i].id);
+                // - ...aggiungo 1 al valore della chiave "likes" e lo stampo (BONUS.3);
+                counter.innerHTML = posts[i].likes += 1;
+                console.log(posts[i].likes);
             }
         }
     );
@@ -133,4 +144,4 @@ console.log(liked);
 // BONUS
 // 1. Formattare le date in formato italiano (gg/mm/aaaa)
 // 2. Gestire l'assenza dell'immagine profilo con un elemento di fallback che contiene le iniziali dell'utente (es. Luca Formicola > LF).
-// 3. Al click su un pulsante "Mi Piace" di un post, se abbiamo già cliccato dobbiamo decrementare il contatore e cambiare il colore del bottone.
+// 3. (DONE) Al click su un pulsante "Mi Piace" di un post, se abbiamo già cliccato dobbiamo decrementare il contatore e cambiare il colore del bottone.
