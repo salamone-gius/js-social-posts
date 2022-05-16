@@ -66,7 +66,7 @@ for (let i = 0; i < posts.length; i++) {
     // - aggiungo dinamicamente ogni elemento (post) dell'array posts all'HTML;
     postsContainer.innerHTML += 
     // - importo TUTTA la struttura HTML dei post;
-    // - inserisco il VALORE della relativa CHIAVE richiamandolo dall'array posts con template literal;
+    // - inserisco il VALORE della relativa CHIAVE richiamandolo dall'array posts con template literal.
         `
         <div class="post">
             <div class="post__header">
@@ -102,7 +102,28 @@ for (let i = 0; i < posts.length; i++) {
     ;
 }
 
-// Milestone 2 - Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone e incrementiamo il counter dei likes relativo.
+// Milestone 2 - Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone e incrementiamo il counter dei likes relativo:
+// - aggancio l'elemento HTML che scatenerà l'evento;
+let likeButton = document.querySelectorAll(".js-like-button");
+console.log(likeButton);
+// - Scorrendo PER tutti gli elementi presi con querySelectorAll (NodeList)...
+for (let i = 0; i < likeButton.length; i++) {
+    // - ...aggiungo ad OGNI elemento un evento "click". Al click...
+    likeButton[i].addEventListener("click", 
+        function() {
+            // - ...SE l'elemento ha la classe like-button--liked...
+            if (likeButton[i].classList.contains("like-button--liked")) {
+                // - ...gliela tolgo...
+                likeButton[i].classList.remove("like-button--liked");
+            // - ...ALTRIMENTI...
+            } else {
+                // - ...gliel'aggiungo;
+                likeButton[i].classList.add("like-button--liked");
+            }
+        }
+    );
+}
+
 // Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
 // BONUS
 // 1. Formattare le date in formato italiano (gg/mm/aaaa)
