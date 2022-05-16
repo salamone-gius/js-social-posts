@@ -62,8 +62,13 @@ const posts = [
 // Milestone 1 - Prendendo come riferimento il layout di esempio presente nell'html, stampiamo i post del nostro feed:
 // - aggancio l'elemento HTML su cui andrò a stampare i post;
 const postsContainer = document.querySelector(".posts-list");
+
 // - scorrendo tutto l'array posts con ciclo definito...
 for (let i = 0; i < posts.length; i++) {
+    // BONUS.1 Salvo il valore created dell'elemento/oggetto dell'array posts nella variabile "date";
+    let usDate = posts[i].created; 
+    // porcheria delle porcherie per invertire la data;
+    let italianDate = (`${usDate[8]}${usDate[9]}${usDate[7]}${usDate[5]}${usDate[6]}${usDate[4]}${usDate[0]}${usDate[1]}${usDate[2]}${usDate[3]}`);
     // - aggiungo dinamicamente ogni elemento (post) dell'array posts all'HTML;
     postsContainer.innerHTML += 
     // - importo TUTTA la struttura HTML dei post;
@@ -77,7 +82,7 @@ for (let i = 0; i < posts.length; i++) {
                     </div>
                     <div class="post-meta__data">
                         <div class="post-meta__author">${posts[i].author.name}</div>
-                        <div class="post-meta__time">${posts[i].created}</div>
+                        <div class="post-meta__time">${italianDate}</div>
                     </div>                    
                 </div>
             </div>
@@ -102,6 +107,7 @@ for (let i = 0; i < posts.length; i++) {
         `
     ;
 }
+
 
 // Milestone 2 - Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone e incrementiamo il counter dei likes relativo:
 // - aggancio l'elemento HTML che scatenerà l'evento;
@@ -142,6 +148,6 @@ for (let i = 0; i < likeButton.length; i++) {
 console.log(liked);
 
 // BONUS
-// 1. Formattare le date in formato italiano (gg/mm/aaaa)
+// 1. (WITH PORCHERY BUT DONE) Formattare le date in formato italiano (gg/mm/aaaa)
 // 2. Gestire l'assenza dell'immagine profilo con un elemento di fallback che contiene le iniziali dell'utente (es. Luca Formicola > LF).
 // 3. (DONE) Al click su un pulsante "Mi Piace" di un post, se abbiamo già cliccato dobbiamo decrementare il contatore e cambiare il colore del bottone.
